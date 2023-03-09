@@ -36,16 +36,7 @@ public class Data_Tickets implements Data<Tickets> {
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }        
+        } 
     }   
     
     public void deleteTable(String table)
@@ -60,15 +51,6 @@ public class Data_Tickets implements Data<Tickets> {
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
         }        
     } 
     
@@ -86,19 +68,10 @@ public class Data_Tickets implements Data<Tickets> {
                 ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getInt("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes"), myRes.getInt("FollowUp")));
             }				
         }
-	catch(SQLException ex)
-	{
+        catch (SQLException ex)
+        {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-	} catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }
+        } 
         return ticket;
     }     
 
@@ -115,23 +88,14 @@ public class Data_Tickets implements Data<Tickets> {
                 ticket.add(new Tickets(myRes.getString("TicketID"),myRes.getInt("RevisionCount"), myRes.getString("SubjectTitle"), myRes.getString("SubjectDesc"), myRes.getString("TicketType"), myRes.getString("PriorityLevel"), myRes.getString("AssignedDepartment"), myRes.getString("AssignedPersonnel"), myRes.getString("DateCreated"), myRes.getString("DateUpdated"), myRes.getString("Status"), myRes.getString("Creator"), myRes.getString("Notes"), myRes.getInt("FollowUp")));
             }				
         }
-	catch(SQLException ex)
-	{
+        catch (SQLException ex)
+        {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-	} catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }
+        } 
         return ticket;
     }
     
-        public void addRow(String table, Tickets ticket)
+    public void addRow(String table, Tickets ticket)
     {
         try{
             myConn = MySQLConnector.getInstance().getConnection();
@@ -144,18 +108,10 @@ public class Data_Tickets implements Data<Tickets> {
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }        
+        }         
     } 
-        public void editRow(String table, Tickets ticket)
+    
+    public void editRow(String table, Tickets ticket)
     {
         try{
             myConn = MySQLConnector.getInstance().getConnection();
@@ -169,19 +125,10 @@ public class Data_Tickets implements Data<Tickets> {
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
         }        
     }
         
-        public void editRowFollowup(String table, String flag, String num)
+    public void editRowFollowup(String table, String flag, String num)
     {
         try{
             myConn = MySQLConnector.getInstance().getConnection();
@@ -195,18 +142,10 @@ public class Data_Tickets implements Data<Tickets> {
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }        
+        } 
     }        
-        public void deleteRowParam(String table, Tickets ticket, String param)
+        
+    public void deleteRowParam(String table, Tickets ticket, String param)
     {
         try{
             myConn = MySQLConnector.getInstance().getConnection();
@@ -220,18 +159,10 @@ public class Data_Tickets implements Data<Tickets> {
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
         }        
     }
-        public void deleteRow(String table, Tickets ticket)
+    
+    public void deleteRow(String table, Tickets ticket)
     {
         try{
             myConn = MySQLConnector.getInstance().getConnection();
@@ -245,74 +176,48 @@ public class Data_Tickets implements Data<Tickets> {
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }        
+        }       
     }
-        public int tallyCount(String parameters)
-        {
-            int tally = 0;
-            try{
-                String qry = "SELECT COUNT(*) from " + parameters;
-                myConn = MySQLConnector.getInstance().getConnection();
-                myStmt=myConn.createStatement();	
-                myRes = myStmt.executeQuery(qry);	
-                System.out.println(qry);
-                while(myRes.next())
-                {
-                    tally = myRes.getInt(1);
-                }
-		
-            }
-            catch(SQLException ex)
+    public int tallyCount(String parameters)
+    {
+        int tally = 0;
+        try{
+            String qry = "SELECT COUNT(*) from " + parameters;
+            myConn = MySQLConnector.getInstance().getConnection();
+            myStmt=myConn.createStatement();	
+            myRes = myStmt.executeQuery(qry);	
+            System.out.println(qry);
+            while(myRes.next())
             {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            } catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
+                tally = myRes.getInt(1);
+            }
+    
         }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }            
-            return tally;
-        }
-        public ArrayList<String> employeeList (String parameters){
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }           
+        return tally;
+    }
 
-            ArrayList<String> employees = new ArrayList<String>();
-            try{
-                myConn = MySQLConnector.getInstance().getConnection();
-                myStmt=myConn.createStatement();
-                String qry = parameters;
-                myRes = myStmt.executeQuery(qry);
+    public ArrayList<String> employeeList (String parameters){
+
+        ArrayList<String> employees = new ArrayList<String>();
+        try{
+            myConn = MySQLConnector.getInstance().getConnection();
+            myStmt=myConn.createStatement();
+            String qry = parameters;
+            myRes = myStmt.executeQuery(qry);
             while (myRes.next()){
-            String x = myRes.getString("combined");
+                String x = myRes.getString("combined");
                 employees.add(x);
             }
-            } catch(SQLException ex){
-                System.out.println(ex.getMessage());
-            } catch (IOException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Tickets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }            
-            return employees;
-
-        }
+        }   catch (SQLException ex)
+        {
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+        } 
+        return employees;
+    }
 }
 
  

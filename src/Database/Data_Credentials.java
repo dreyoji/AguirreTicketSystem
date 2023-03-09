@@ -29,26 +29,17 @@ public class Data_Credentials implements Data<Credentials>{
             myConn = MySQLConnector.getInstance().getConnection();
             myStmt=myConn.createStatement();		
             String qry = "SELECT * FROM " + table;
-	    myRes = myStmt.executeQuery(qry);
+	        myRes = myStmt.executeQuery(qry);
             System.out.println(qry);
-	    while(myRes.next())
+	        while(myRes.next())
             {
                 user.add(new Credentials(myRes.getInt("num"), myRes.getString("empnum"), myRes.getString("username"), myRes.getString("password"), myRes.getString("email_add"), myRes.getString("firstname"), myRes.getString("middlename"), myRes.getString("lastname"), myRes.getInt("age"), myRes.getString("birthday"), myRes.getString("phonenum"), myRes.getString("gender"), myRes.getString("residence"), myRes.getString("acctype"), myRes.getString("startdate"), myRes.getString("department"), myRes.getString("position")));
             }				
         }
-	catch(SQLException ex)
-	{
+        catch (SQLException ex)
+        {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-	} catch (IOException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }        
+        } 
         return user;
     }    
     
@@ -66,16 +57,7 @@ public class Data_Credentials implements Data<Credentials>{
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }        
+        }       
     }
 
     public void deleteTable(String table)
@@ -91,16 +73,7 @@ public class Data_Credentials implements Data<Credentials>{
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }        
+        }      
     }    
     
     public void addRow(String table, Credentials user)
@@ -116,16 +89,7 @@ public class Data_Credentials implements Data<Credentials>{
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }         
+        }      
     } 
     public void editRow(String table, Credentials user)
     {
@@ -141,16 +105,7 @@ public class Data_Credentials implements Data<Credentials>{
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }        
+        } 
     } 
     public void deleteRow(String table, Credentials user)
     {
@@ -166,16 +121,7 @@ public class Data_Credentials implements Data<Credentials>{
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }         
+        } 
     }
     public void deleteRowSpec(String num)
     {
@@ -191,16 +137,7 @@ public class Data_Credentials implements Data<Credentials>{
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Data_Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-            if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}        
-        }         
+        } 
     } 
       
    
