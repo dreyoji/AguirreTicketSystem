@@ -1669,8 +1669,8 @@ public class MainMenu extends javax.swing.JFrame {
         String dept = "";
         String Notes = ticketNotesTextArea.getText();
         for (Tickets t: ticketinfo){
-        OldRevCount = Integer.toString(t.getRevcount());
-        int increment = t.getRevcount()+1;        
+        OldRevCount = Integer.toString(t.getRevCount());
+        int increment = t.getRevCount()+1;        
         NewRevCount = increment;
         DateCreated = t.getDateCreated();
         Creator = t.getCreator();
@@ -1697,7 +1697,7 @@ public class MainMenu extends javax.swing.JFrame {
         model = (DefaultTableModel) ticketHistoryTable.getModel();
         model.setRowCount(0);
         for (Tickets t : tickethistory) {
-        model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+        model.addRow(new Object[]{t.getRevCount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
         }
         updateTableDisplay();
         JOptionPane.showMessageDialog(null, "Ticket has been updated","Ticket Updated",JOptionPane.INFORMATION_MESSAGE);
@@ -1767,8 +1767,8 @@ public class MainMenu extends javax.swing.JFrame {
                 String person = "";
                 String dept = "";
                 for (Tickets t: ticketinfo){
-                OldRevCount = Integer.toString(t.getRevcount());
-                int increment = t.getRevcount()+1;        
+                OldRevCount = Integer.toString(t.getRevCount());
+                int increment = t.getRevCount()+1;        
                 NewRevCount = increment;
                 DateCreated = t.getDateCreated();
                 person = t.getPersonnel();
@@ -1792,7 +1792,7 @@ public class MainMenu extends javax.swing.JFrame {
                 model = (DefaultTableModel) ticketHistoryTable.getModel();
                 model.setRowCount(0);
                 for (Tickets t : tickethistory) {
-                model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+                model.addRow(new Object[]{t.getRevCount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
                 }
                 updateTableDisplay();
                 JOptionPane.showMessageDialog(null, "Ticket has been closed","Ticket Closed",JOptionPane.INFORMATION_MESSAGE);
@@ -1825,7 +1825,7 @@ public class MainMenu extends javax.swing.JFrame {
             depComboBox.setSelectedItem(ticketHistoryTable.getValueAt(selectedRow,3).toString());
             for(Tickets t: ticketinfo){
             ticketNameTxtField.setText(t.getTitle());
-            ticketTxtArea.setText(t.getDesc());
+            ticketTxtArea.setText(t.getDescription());
             String department = depComboBox.getSelectedItem().toString();
             Data_Tickets emp = new Data_Tickets();
             String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
@@ -1859,7 +1859,7 @@ public class MainMenu extends javax.swing.JFrame {
             depComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,3).toString());
             for(Tickets t: ticketinfo){
             ticketNameTxtField.setText(t.getTitle());
-            ticketTxtArea.setText(t.getDesc());
+            ticketTxtArea.setText(t.getDescription());
             String department = depComboBox.getSelectedItem().toString();
             Data_Tickets emp = new Data_Tickets();
             String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
@@ -1875,7 +1875,7 @@ public class MainMenu extends javax.swing.JFrame {
             model = (DefaultTableModel) ticketHistoryTable.getModel();
             model.setRowCount(0);
             for (Tickets t : tickethistory) {
-            model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+            model.addRow(new Object[]{t.getRevCount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
             }
             updateTableDisplay();
         }        
@@ -1912,7 +1912,7 @@ public class MainMenu extends javax.swing.JFrame {
             depComboBox.setSelectedItem(allTicketTable.getValueAt(selectedRow,3).toString());
             for(Tickets t: ticketinfo){
             ticketNameTxtField.setText(t.getTitle());
-            ticketTxtArea.setText(t.getDesc());
+            ticketTxtArea.setText(t.getDescription());
             String department = depComboBox.getSelectedItem().toString();
             Data_Tickets emp = new Data_Tickets();
             String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
@@ -1928,7 +1928,7 @@ public class MainMenu extends javax.swing.JFrame {
             model = (DefaultTableModel) ticketHistoryTable.getModel();
             model.setRowCount(0);
             for (Tickets t : tickethistory) {
-            model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+            model.addRow(new Object[]{t.getRevCount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
             }
             updateTableDisplay();                
             }
@@ -2217,7 +2217,7 @@ public class MainMenu extends javax.swing.JFrame {
     model = (DefaultTableModel) userManagerTable.getModel();
     model.setRowCount(0);
     for(Credentials u: user) {    
-    model.addRow(new Object[] {u.getEmpnum(),u.getF_name(),u.getM_name(),u.getL_name(),u.getPhonenum(),u.getEmail(),u.getBday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
+    model.addRow(new Object[] {u.getEmpNum(),u.getFirstName(),u.getMiddleName(),u.getLastName(),u.getPhoneNumber(),u.getEmail(),u.getBirthday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
     }
     alltickets = mySql.ShowRecSpec("SELECT m1.* FROM masterrecord m1 LEFT JOIN masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL ORDER BY TicketID DESC");
     model = (DefaultTableModel) allTicketTable.getModel();

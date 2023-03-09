@@ -195,7 +195,7 @@ public class TicketHistory extends javax.swing.JFrame {
     tickethistory = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + ticketid + "' AND RevisionCount = '" + ticketHistoryTable.getValueAt(selectedRow,0).toString() + "'");
     for (Tickets t : tickethistory){
     titleHistory.setText(t.getTitle());
-    descHistory.setText(t.getDesc());
+    descHistory.setText(t.getDescription());
     creatorHistory.setText(t.getCreator());
     notesHistory.setText(t.getNotes());
     }
@@ -207,9 +207,9 @@ public class TicketHistory extends javax.swing.JFrame {
     model = (DefaultTableModel) ticketHistoryTable.getModel();
     model.setRowCount(0);
     for (Tickets t : tickethistory) {
-    model.addRow(new Object[]{t.getRevcount(), t.getStatus(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
+    model.addRow(new Object[]{t.getRevCount(), t.getStatus(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateUpdated(), t.getPersonnel()});
     titleHistory.setText(t.getTitle());
-    descHistory.setText(t.getDesc());
+    descHistory.setText(t.getDescription());
     creatorHistory.setText(t.getCreator());
     notesHistory.setText(t.getNotes());
     }
