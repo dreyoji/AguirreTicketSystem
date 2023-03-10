@@ -1,139 +1,129 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Database;
 
-/**
- *
- * @author boxro
- */
 public class Tickets {
-    private String id;
-    private int revcount;
-    private String title;
-    private String desc;
-    private String type;
-    private String priority;
-    private String department;
-    private String personnel;
-    private String dateCreated;
-    private String dateUpdated;
-    private String status;
-    private String creator;
-    private String notes;
-    private int followup;
 
-    public Tickets(String id, int revcount, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes, int followup) {
-        this.id = id;
-        this.revcount = revcount;
-        this.title = title;
-        this.desc = desc;
-        this.type = type;
-        this.priority = priority;
-        this.department = department;
-        this.personnel = personnel;
-        this.dateCreated = dateCreated;
-        this.dateUpdated = dateUpdated;
-        this.status = status;
-        this.creator = creator;
-        this.notes = notes;
-        this.followup = followup;
-    }    
+    private String _id;             // unique ID of the ticket
+    private int _revcount;          // revision count of the ticket
+    private String _title;          // title of the ticket
+    private String _desc;           // description of the ticket
+    private String _type;           // type of the ticket
+    private String _priority;       // priority of the ticket
+    private String _department;     // department associated with the ticket
+    private String _personnel;      // personnel assigned to handle the ticket
+    private String _dateCreated;    // date when the ticket was created
+    private String _dateUpdated;    // date when the ticket was last updated
+    private String _status;         // current status of the ticket
+    private String _creator;        // creator of the ticket
+    private String _notes;          // notes associated with the ticket
+    private int _followup;          // follow-up count of the ticket
+
+    // Constructor for creating a ticket with all attributes
+    public Tickets(String id, int revCount, String title, String description, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes, int followup) {
+        _id = id;
+        _revcount = revCount;
+        _title = title;
+        _desc = description;
+        _type = type;
+        _priority = priority;
+        _department = department;
+        _personnel = personnel;
+        _dateCreated = dateCreated;
+        _dateUpdated = dateUpdated;
+        _status = status;
+        _creator = creator;
+        _notes = notes;
+        _followup = followup;
+    }
     
-    public Tickets(String id, String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes) {
-        this.id = id;
-        this.title = title;
-        this.desc = desc;
-        this.type = type;
-        this.priority = priority;
-        this.department = department;
-        this.personnel = personnel;
-        this.dateCreated = dateCreated;
-        this.dateUpdated = dateUpdated;
-        this.status = status;
-        this.creator = creator;
-        this.notes = notes;
+    // Constructor for creating a ticket with all attributes except revision count and follow-up status
+    public Tickets(String id, String title, String description, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes) {
+        _id = id;
+        _title = title;
+        _desc = description;
+        _type = type;
+        _priority = priority;
+        _department = department;
+        _personnel = personnel;
+        _dateCreated = dateCreated;
+        _dateUpdated = dateUpdated;
+        _status = status;
+        _creator = creator;
+        _notes = notes;
     }
 
-    public Tickets(String title, String desc, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes) {
-        this.title = title;
-        this.desc = desc;
-        this.type = type;
-        this.priority = priority;
-        this.department = department;
-        this.personnel = personnel;
-        this.dateCreated = dateCreated;
-        this.dateUpdated = dateUpdated;
-        this.status = status;
-        this.creator = creator;
-        this.notes = notes;
+    // Constructor for creating a ticket with all attributes except ID, revision count and follow-up status
+    public Tickets(String title, String description, String type, String priority, String department, String personnel, String dateCreated, String dateUpdated, String status, String creator, String notes) {
+        _title = title;
+        _desc = description;
+        _type = type;
+        _priority = priority;
+        _department = department;
+        _personnel = personnel;
+        _dateCreated = dateCreated;
+        _dateUpdated = dateUpdated;
+        _status = status;
+        _creator = creator;
+        _notes = notes;
     }
 
     public Tickets(String id) {
-        this.id = id;
+        _id = id;
     }
 
+    // Getter methods for all variables
     public String getId() {
-        return id;
+        return _id;
     }
 
     public String getTitle() {
-        return title;
+        return _title;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return _desc;
     }
 
     public String getType() {
-        return type;
+        return _type;
     }
 
     public String getPriority() {
-        return priority;
+        return _priority;
     }
 
     public String getDepartment() {
-        return department;
+        return _department;
     }
 
     public String getPersonnel() {
-        return personnel;
+        return _personnel;
     }
 
     public String getDateCreated() {
-        return dateCreated;
+        return _dateCreated;
     }
 
     public String getDateUpdated() {
-        return dateUpdated;
+        return _dateUpdated;
     }
 
     public String getStatus() {
-        return status;
+        return _status;
     }
 
-    public int getRevcount() {
-        return revcount;
+    public int getRevCount() {
+        return _revcount;
     }
 
     public String getCreator() {
-        return creator;
+        return _creator;
     }
 
-    public String getNotes(){
-        return notes;
+    public String getNotes() {
+        return _notes;
     }
 
     public int getFollowup() {
-        return followup;
+        return _followup;
     }
-
 }
-
-
-
-
-
-

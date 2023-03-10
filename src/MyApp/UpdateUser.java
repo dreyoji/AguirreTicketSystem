@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package MyApp;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
@@ -35,10 +31,11 @@ public class UpdateUser extends javax.swing.JFrame {
         FrameCenter.centerJFrame(this);
         setResizable(false);
     }
-    
+
     Login login;
     int num = 0;
     List<String> array = new ArrayList<>();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -394,7 +391,7 @@ public class UpdateUser extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBttn1ActionPerformed
 
     private void UpdateAccountBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAccountBttnActionPerformed
-        try {                                                  
+        try {
             // TODO add your handling code here:
             EncryptionDecryption hash = new EncryptionDecryption();
             boolean emailAddCorFormat = false; // implement email format check
@@ -410,15 +407,15 @@ public class UpdateUser extends javax.swing.JFrame {
             String regex = "^(.+)@(.+)$";
             //Compile regular expression to get the pattern
             Pattern pattern = Pattern.compile(regex);
-            
-            for(char eml : ch){
+
+            for (char eml : ch) {
                 //Create instance of matcher
                 Matcher matcher = pattern.matcher(seq);
-                if(matcher.matches()==false){  
-                    JOptionPane.showMessageDialog(null,"Invalid Email");
-                }
-                else
+                if (matcher.matches() == false) {
+                    JOptionPane.showMessageDialog(null, "Invalid Email");
+                } else {
                     emailAddCorFormat = true;
+                }
             }
             String mnum = m_numfld.getText();
             String uname = usernameFld.getText();
@@ -426,73 +423,70 @@ public class UpdateUser extends javax.swing.JFrame {
             String conpass = passConFld.getText();
             String acttyp = acctypeSel.getSelectedItem().toString();
             String empnum = empIDFld.getText();
-            
+
             String bday = "";
             String sdate = "";
             int age = 0;
-            
+
             try {
                 bday = dFormat.format(birthday.getDate());
             } catch (Exception ex) {
                 //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Birthdate was not provided.","Missing Birthdate",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Birthdate was not provided.", "Missing Birthdate", JOptionPane.ERROR_MESSAGE);
                 System.out.println("Blank field - Birthdate");
             }
-            
+
             try {
                 sdate = dFormat.format(dateStart.getDate());
             } catch (Exception ex) {
                 //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Startdate was not provided.","Missing Startdate",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Startdate was not provided.", "Missing Startdate", JOptionPane.ERROR_MESSAGE);
                 System.out.println("Blank field - Birthdate");
             }
-            
+
             try {
                 age = currYear - Integer.parseInt(birthYear.format(birthday.getDate()));
             } catch (Exception ex) {
                 //Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Age cannot be computed");
             }
-            
+
             String gender = genderFld.getText();
             String resi = resFld.getText();
             String dep = deptFld.getSelectedItem().toString();
             String pos = posFld.getText();
-            List<String> array = Arrays.asList(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos, sdate, bday); 
+            List<String> array = Arrays.asList(empnum, uname, pass, email, fname, mname, lname, mnum, gender, resi, pos, sdate, bday);
             boolean passAreEqual = pass.equals(conpass);
-            if (passAreEqual && emailAddCorFormat && checkFields(array).equals("valid")){ //add appropriate checks for user-provided data
+            if (passAreEqual && emailAddCorFormat && checkFields(array).equals("valid")) { //add appropriate checks for user-provided data
                 pass = hash.encrypt(pass);
                 String table = "credentials";
                 Data_Credentials creds = new Data_Credentials();
-                Credentials information = new Credentials (num,empnum,uname,pass,email,fname,mname,lname,age,bday,mnum,gender,resi,acttyp,sdate,dep,pos);
-                creds.editRow(table,information);
+                Credentials information = new Credentials(num, empnum, uname, pass, email, fname, mname, lname, age, bday, mnum, gender, resi, acttyp, sdate, dep, pos);
+                creds.editRow(table, information);
                 clearflds();
                 dispose();
-            }
-            else if (checkFields(array).equals("not valid")){
-                JOptionPane.showMessageDialog(null, "All fields must not be blank","Missing fields",JOptionPane.ERROR_MESSAGE);
-            }
-            else if (emailAddCorFormat == false){
-                JOptionPane.showMessageDialog(null, "The email provided is not acceptable","Email Not Accepted",JOptionPane.ERROR_MESSAGE);
-            }
-            else if (passAreEqual == false){
-                JOptionPane.showMessageDialog(null, "The passwords entered don't match!","Password Mismatch",JOptionPane.ERROR_MESSAGE);
+            } else if (checkFields(array).equals("not valid")) {
+                JOptionPane.showMessageDialog(null, "All fields must not be blank", "Missing fields", JOptionPane.ERROR_MESSAGE);
+            } else if (emailAddCorFormat == false) {
+                JOptionPane.showMessageDialog(null, "The email provided is not acceptable", "Email Not Accepted", JOptionPane.ERROR_MESSAGE);
+            } else if (passAreEqual == false) {
+                JOptionPane.showMessageDialog(null, "The passwords entered don't match!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             Logger.getLogger(UpdateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_UpdateAccountBttnActionPerformed
 
-    private String checkFields(List<String> strings){
+    private String checkFields(List<String> strings) {
         for (String s : strings) {
-        if (s == null || s.trim().isEmpty()) {
-            System.out.println(s);
-            return "not valid";
+            if (s == null || s.trim().isEmpty()) {
+                System.out.println(s);
+                return "not valid";
+            }
         }
-    }
         return "valid";
-    }    
-    
+    }
+
     private void resetBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBttnActionPerformed
         // TODO add your handling code here:
         clearflds();
@@ -535,16 +529,16 @@ public class UpdateUser extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        try{
-        UIManager.setLookAndFeel( new FlatIntelliJLaf() );
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UpdateUser().setVisible(true);
-            }
-        });
-        }catch( Exception ex ) {
-                System.err.println( "Failed to initialize LaF" );
-            }    
+        try {
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new UpdateUser().setVisible(true);
+                }
+            });
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -608,8 +602,8 @@ public class UpdateUser extends javax.swing.JFrame {
         birthday.setCalendar(null);
         dateStart.setCalendar(null);
     }
-    
-    public void populateflds(String t) throws ParseException{
+
+    public void populateflds(String t) throws ParseException {
         try {
             EncryptionDecryption hash = new EncryptionDecryption();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -617,22 +611,22 @@ public class UpdateUser extends javax.swing.JFrame {
             Data_Credentials creds = new Data_Credentials();
             String parameters = "credentials WHERE empnum = '" + t + "'";
             userinfo = creds.ShowRec(parameters);
-            for(Credentials u: userinfo){
-                empIDFld.setText(u.getEmpnum());
+            for (Credentials u : userinfo) {
+                empIDFld.setText(u.getEmpNum());
                 posFld.setText(u.getPosition());
                 resFld.setText(u.getResidence());
                 genderFld.setText(u.getGender());
-                f_namefld.setText(u.getF_name());
-                m_namefld.setText(u.getM_name());
-                l_namefld.setText(u.getL_name());
-                m_numfld.setText(u.getPhonenum());
+                f_namefld.setText(u.getFirstName());
+                m_namefld.setText(u.getMiddleName());
+                l_namefld.setText(u.getLastName());
+                m_numfld.setText(u.getPhoneNumber());
                 em_addfld.setText(u.getEmail());
-                usernameFld.setText(u.getU_name());
-                passFld.setText(hash.decrypt(u.getPass()));
-                passConFld.setText(hash.decrypt(u.getPass()));
+                usernameFld.setText(u.getUsername());
+                passFld.setText(hash.decrypt(u.getPassword()));
+                passConFld.setText(hash.decrypt(u.getPassword()));
                 acctypeSel.setSelectedItem(u.getActType());
                 deptFld.setSelectedItem(u.getDepartment());
-                birthday.setDate(format.parse(u.getBday()));
+                birthday.setDate(format.parse(u.getBirthday()));
                 dateStart.setDate(format.parse(u.getStartdate()));
                 num = u.getNum();
             }
