@@ -121,17 +121,14 @@ public class MainMenu extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         myTicketTable = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        refreshTableButton1 = new javax.swing.JButton();
         allTicketsPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         allTicketTable = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
-        refreshTableButton6 = new javax.swing.JButton();
         solvedTicketsPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         solvedTicketsTable = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        refreshTableButton5 = new javax.swing.JButton();
         createTicketPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         ticketTypeComboBox1 = new javax.swing.JComboBox<>();
@@ -188,7 +185,6 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jScrollPane10 = new javax.swing.JScrollPane();
         requestsTicketTable = new javax.swing.JTable();
-        refreshTableButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
@@ -363,7 +359,7 @@ public class MainMenu extends javax.swing.JFrame {
         defPanelLayout.setVerticalGroup(
             defPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(defPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(119, Short.MAX_VALUE)
                 .addGroup(defPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,11 +382,11 @@ public class MainMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Employee ID", "First Name", "Middle Name", "Last Name", "Mobile #", "Email", "Birthday", "Account Type", "Department", "Position", "Start Date", "Gender"
+                "#", "Employee ID", "First Name", "Middle Name", "Last Name", "Mobile #", "Email", "Birthday", "Account Type", "Department", "Position", "Start Date", "Gender"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -400,8 +396,10 @@ public class MainMenu extends javax.swing.JFrame {
         userManagerTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane7.setViewportView(userManagerTable);
         if (userManagerTable.getColumnModel().getColumnCount() > 0) {
-            userManagerTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-            userManagerTable.getColumnModel().getColumn(7).setPreferredWidth(100);
+            userManagerTable.getColumnModel().getColumn(0).setMinWidth(5);
+            userManagerTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+            userManagerTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+            userManagerTable.getColumnModel().getColumn(8).setPreferredWidth(100);
         }
 
         createUserButton.setBackground(new java.awt.Color(0, 153, 51));
@@ -504,33 +502,33 @@ public class MainMenu extends javax.swing.JFrame {
         myTicketTable.setAutoCreateRowSorter(true);
         myTicketTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Ticket Number", "Ticket Title", "Ticket Type", "Priority", "Department", "Date Created", "Date Updated", "Status"
+                "Ticket Number", "Ticket Title", "Ticket Type", "Priority", "Department", "Date Created", "Date Updated"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -549,17 +547,6 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("My Tickets");
 
-        refreshTableButton1.setBackground(new java.awt.Color(0, 153, 255));
-        refreshTableButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        refreshTableButton1.setForeground(new java.awt.Color(255, 255, 255));
-        refreshTableButton1.setText("REFRESH");
-        refreshTableButton1.setBorder(new javax.swing.border.MatteBorder(null));
-        refreshTableButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTableButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout myTicketsPanelLayout = new javax.swing.GroupLayout(myTicketsPanel);
         myTicketsPanel.setLayout(myTicketsPanelLayout);
         myTicketsPanelLayout.setHorizontalGroup(
@@ -567,9 +554,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(myTicketsPanelLayout.createSequentialGroup()
                 .addGap(393, 393, 393)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
-                .addComponent(refreshTableButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(453, Short.MAX_VALUE))
             .addGroup(myTicketsPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -577,10 +562,8 @@ public class MainMenu extends javax.swing.JFrame {
         myTicketsPanelLayout.setVerticalGroup(
             myTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myTicketsPanelLayout.createSequentialGroup()
-                .addGap(0, 15, Short.MAX_VALUE)
-                .addGroup(myTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(refreshTableButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
@@ -638,17 +621,6 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("All Tickets");
 
-        refreshTableButton6.setBackground(new java.awt.Color(0, 153, 255));
-        refreshTableButton6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        refreshTableButton6.setForeground(new java.awt.Color(255, 255, 255));
-        refreshTableButton6.setText("REFRESH");
-        refreshTableButton6.setBorder(new javax.swing.border.MatteBorder(null));
-        refreshTableButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTableButton6ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout allTicketsPanelLayout = new javax.swing.GroupLayout(allTicketsPanel);
         allTicketsPanel.setLayout(allTicketsPanelLayout);
         allTicketsPanelLayout.setHorizontalGroup(
@@ -657,17 +629,13 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(allTicketsPanelLayout.createSequentialGroup()
                 .addGap(404, 404, 404)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(refreshTableButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         allTicketsPanelLayout.setVerticalGroup(
             allTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allTicketsPanelLayout.createSequentialGroup()
-                .addGap(0, 15, Short.MAX_VALUE)
-                .addGroup(allTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(refreshTableButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
@@ -720,17 +688,6 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Solved Tickets");
 
-        refreshTableButton5.setBackground(new java.awt.Color(0, 153, 255));
-        refreshTableButton5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        refreshTableButton5.setForeground(new java.awt.Color(255, 255, 255));
-        refreshTableButton5.setText("REFRESH");
-        refreshTableButton5.setBorder(new javax.swing.border.MatteBorder(null));
-        refreshTableButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTableButton5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout solvedTicketsPanelLayout = new javax.swing.GroupLayout(solvedTicketsPanel);
         solvedTicketsPanel.setLayout(solvedTicketsPanelLayout);
         solvedTicketsPanelLayout.setHorizontalGroup(
@@ -738,9 +695,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(solvedTicketsPanelLayout.createSequentialGroup()
                 .addGap(376, 376, 376)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
-                .addComponent(refreshTableButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(420, Short.MAX_VALUE))
             .addGroup(solvedTicketsPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane3)
                 .addContainerGap())
@@ -748,11 +703,9 @@ public class MainMenu extends javax.swing.JFrame {
         solvedTicketsPanelLayout.setVerticalGroup(
             solvedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, solvedTicketsPanelLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(solvedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(refreshTableButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -936,7 +889,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(newTicketName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -960,7 +913,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         createTicketPanelLayout.setVerticalGroup(
             createTicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1160,15 +1113,7 @@ public class MainMenu extends javax.swing.JFrame {
             new String [] {
                 "Revision #", "Date Updated", "Status", "Department", "Personnel", "Priority"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         ticketHistoryTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         ticketHistoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1378,38 +1323,24 @@ public class MainMenu extends javax.swing.JFrame {
         });
         jScrollPane10.setViewportView(requestsTicketTable);
 
-        refreshTableButton4.setBackground(new java.awt.Color(0, 153, 255));
-        refreshTableButton4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        refreshTableButton4.setForeground(new java.awt.Color(255, 255, 255));
-        refreshTableButton4.setText("REFRESH");
-        refreshTableButton4.setBorder(new javax.swing.border.MatteBorder(null));
-        refreshTableButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTableButton4ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout assignedTicketsPanelLayout = new javax.swing.GroupLayout(assignedTicketsPanel);
         assignedTicketsPanel.setLayout(assignedTicketsPanelLayout);
         assignedTicketsPanelLayout.setHorizontalGroup(
             assignedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(assignedTicketsPanelLayout.createSequentialGroup()
                 .addGroup(assignedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(assignedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(assignedTicketsPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 957, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(assignedTicketsPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 957, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(assignedTicketsPanelLayout.createSequentialGroup()
-                            .addGap(364, 364, 364)
-                            .addComponent(jLabel30)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(refreshTableButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(assignedTicketsPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 957, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(assignedTicketsPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 957, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(assignedTicketsPanelLayout.createSequentialGroup()
                         .addGap(383, 383, 383)
-                        .addComponent(jLabel23)))
+                        .addComponent(jLabel23))
+                    .addGroup(assignedTicketsPanelLayout.createSequentialGroup()
+                        .addGap(364, 364, 364)
+                        .addComponent(jLabel30)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         assignedTicketsPanelLayout.setVerticalGroup(
@@ -1418,11 +1349,9 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel23)
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(assignedTicketsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(refreshTableButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
@@ -1478,6 +1407,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_createTicketActionPerformed
 
     private void logoutBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBttnActionPerformed
+
         int ans = JOptionPane.showOptionDialog(this,"Do you want to logoff?", "Logout User", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
         if (ans == JOptionPane.YES_OPTION){
             login = new Login();
@@ -1654,7 +1584,7 @@ public class MainMenu extends javax.swing.JFrame {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String TicketID = ticketNumberLbl4.getText();
         ArrayList<Tickets> ticketinfo;
-        String parameters = "SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING TicketID = '" + TicketID + "'";
+        String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + TicketID + "'";
         ticketinfo = ticket.ShowRecSpec(parameters);
         String TicketName = ticketNameTxtField.getText();
         String TicketDesc = ticketTxtArea.getText();
@@ -1664,17 +1594,13 @@ public class MainMenu extends javax.swing.JFrame {
         String OldRevCount = "";
         int NewRevCount = 0;
         String DateCreated = "";
-        String Creator = "";
-        String person = "";
-        String dept = "";
+        String Creator = getFirstname() + " " + getLastname();
         String Notes = ticketNotesTextArea.getText();
         for (Tickets t: ticketinfo){
-        OldRevCount = Integer.toString(t.getRevCount());
-        int increment = t.getRevCount()+1;        
+        OldRevCount = Integer.toString(t.getRevcount());
+        int increment = t.getRevcount()+1;        
         NewRevCount = increment;
         DateCreated = t.getDateCreated();
-        Creator = t.getCreator();
-        person = t.getPersonnel();
         }
         System.out.println(OldRevCount);
         System.out.println(NewRevCount);
@@ -1683,10 +1609,6 @@ public class MainMenu extends javax.swing.JFrame {
         String DateUpdated = tstamp.toString();
         String Status = "Open";
         int followup = 0;
-        if(getAcctype().equals("Employee")){
-        AssignedPersonnel = person;
-        AssignedDepartment = dept;
-        }
         List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
         if (checkFields(array).equals("valid")){
         Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
@@ -1697,7 +1619,7 @@ public class MainMenu extends javax.swing.JFrame {
         model = (DefaultTableModel) ticketHistoryTable.getModel();
         model.setRowCount(0);
         for (Tickets t : tickethistory) {
-        model.addRow(new Object[]{t.getRevCount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+        model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
         }
         updateTableDisplay();
         JOptionPane.showMessageDialog(null, "Ticket has been updated","Ticket Updated",JOptionPane.INFORMATION_MESSAGE);
@@ -1752,7 +1674,7 @@ public class MainMenu extends javax.swing.JFrame {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 String TicketID = ticketNumberLbl4.getText();
                 ArrayList<Tickets> ticketinfo;
-                String parameters = "SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING TicketID = '" + TicketID + "'";
+                String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + TicketID + "'";
                 ticketinfo = ticket.ShowRecSpec(parameters);
                 String TicketName = ticketNameTxtField.getText();
                 String TicketDesc = ticketTxtArea.getText();
@@ -1762,27 +1684,18 @@ public class MainMenu extends javax.swing.JFrame {
                 String OldRevCount = "";
                 int NewRevCount = 0;
                 String DateCreated = "";
-                String Creator = ""; 
+                String Creator = getFirstname() + " " + getLastname(); 
                 String Notes = ticketNotesTextArea.getText();
-                String person = "";
-                String dept = "";
                 for (Tickets t: ticketinfo){
-                OldRevCount = Integer.toString(t.getRevCount());
-                int increment = t.getRevCount()+1;        
+                OldRevCount = Integer.toString(t.getRevcount());
+                int increment = t.getRevcount()+1;        
                 NewRevCount = increment;
                 DateCreated = t.getDateCreated();
-                person = t.getPersonnel();
-                dept = t.getDepartment();
-                Creator = t.getCreator();
                 }
                 String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
                 String DateUpdated = tstamp.toString();
                 String Status = "Closed";
                 int followup = 0;
-                if(getAcctype().equals("Employee")){
-                AssignedPersonnel = person;
-                AssignedDepartment = dept;
-                }
                 List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
                 if (checkFields(array).equals("valid")){
                 Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
@@ -1792,7 +1705,7 @@ public class MainMenu extends javax.swing.JFrame {
                 model = (DefaultTableModel) ticketHistoryTable.getModel();
                 model.setRowCount(0);
                 for (Tickets t : tickethistory) {
-                model.addRow(new Object[]{t.getRevCount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+                model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
                 }
                 updateTableDisplay();
                 JOptionPane.showMessageDialog(null, "Ticket has been closed","Ticket Closed",JOptionPane.INFORMATION_MESSAGE);
@@ -1825,7 +1738,7 @@ public class MainMenu extends javax.swing.JFrame {
             depComboBox.setSelectedItem(ticketHistoryTable.getValueAt(selectedRow,3).toString());
             for(Tickets t: ticketinfo){
             ticketNameTxtField.setText(t.getTitle());
-            ticketTxtArea.setText(t.getDescription());
+            ticketTxtArea.setText(t.getDesc());
             String department = depComboBox.getSelectedItem().toString();
             Data_Tickets emp = new Data_Tickets();
             String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
@@ -1851,7 +1764,7 @@ public class MainMenu extends javax.swing.JFrame {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             ArrayList<Tickets> ticketinfo;
             Data_Tickets ticket = new Data_Tickets();
-            String parameters = "SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING TicketID = '" + id + "'";
+            String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
             ticketinfo = ticket.ShowRecSpec(parameters);
             ticketNumberLbl4.setText(id);
             ticketTypeComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,1).toString());
@@ -1859,7 +1772,7 @@ public class MainMenu extends javax.swing.JFrame {
             depComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,3).toString());
             for(Tickets t: ticketinfo){
             ticketNameTxtField.setText(t.getTitle());
-            ticketTxtArea.setText(t.getDescription());
+            ticketTxtArea.setText(t.getDesc());
             String department = depComboBox.getSelectedItem().toString();
             Data_Tickets emp = new Data_Tickets();
             String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
@@ -1875,7 +1788,7 @@ public class MainMenu extends javax.swing.JFrame {
             model = (DefaultTableModel) ticketHistoryTable.getModel();
             model.setRowCount(0);
             for (Tickets t : tickethistory) {
-            model.addRow(new Object[]{t.getRevCount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+            model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
             }
             updateTableDisplay();
         }        
@@ -1904,7 +1817,7 @@ public class MainMenu extends javax.swing.JFrame {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             ArrayList<Tickets> ticketinfo;
             Data_Tickets ticket = new Data_Tickets();
-            String parameters = "SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING TicketID = '" + id + "'";
+            String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
             ticketinfo = ticket.ShowRecSpec(parameters);
             ticketNumberLbl4.setText(id);
             ticketTypeComboBox.setSelectedItem(allTicketTable.getValueAt(selectedRow,1).toString());
@@ -1912,7 +1825,7 @@ public class MainMenu extends javax.swing.JFrame {
             depComboBox.setSelectedItem(allTicketTable.getValueAt(selectedRow,3).toString());
             for(Tickets t: ticketinfo){
             ticketNameTxtField.setText(t.getTitle());
-            ticketTxtArea.setText(t.getDescription());
+            ticketTxtArea.setText(t.getDesc());
             String department = depComboBox.getSelectedItem().toString();
             Data_Tickets emp = new Data_Tickets();
             String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
@@ -1928,7 +1841,7 @@ public class MainMenu extends javax.swing.JFrame {
             model = (DefaultTableModel) ticketHistoryTable.getModel();
             model.setRowCount(0);
             for (Tickets t : tickethistory) {
-            model.addRow(new Object[]{t.getRevCount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+            model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
             }
             updateTableDisplay();                
             }
@@ -1944,6 +1857,7 @@ public class MainMenu extends javax.swing.JFrame {
            
         });         
         if (evt.getButton() == java.awt.event.MouseEvent.BUTTON3 && allTicketTable.getSelectedRow() != -1){
+            System.out.println("Right button clicked");
             if(getAcctype().equals("Administrator")){
                 userPop.add(modifyTicket);
             }
@@ -1973,13 +1887,8 @@ public class MainMenu extends javax.swing.JFrame {
         if (myTicketTable.getSelectedRowCount()==1){
             int ans = JOptionPane.showOptionDialog(this,"Followup this ticket?", "Followup Ticket", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
             if (ans == JOptionPane.YES_OPTION){
-            if (myTicketTable.getValueAt(myTicketTable.getSelectedRow(), 7).toString().equals("Closed")){
-            JOptionPane.showMessageDialog(null, "This ticket has already been marked as closed.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            else{
             mySql.editRowFollowup("alltickets", "1" ,myTicketTable.getValueAt(myTicketTable.getSelectedRow(), 0).toString());
             updateTableDisplay();
-            }
             }
         } else {
             if (myTicketTable.getRowCount()==0){
@@ -1989,26 +1898,6 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }        
     }//GEN-LAST:event_myTicketTableMouseClicked
-
-    private void refreshTableButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTableButton1ActionPerformed
-        // TODO add your handling code here:
-        updateTableDisplay();
-    }//GEN-LAST:event_refreshTableButton1ActionPerformed
-
-    private void refreshTableButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTableButton4ActionPerformed
-        // TODO add your handling code here:
-        updateTableDisplay();
-    }//GEN-LAST:event_refreshTableButton4ActionPerformed
-
-    private void refreshTableButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTableButton5ActionPerformed
-        // TODO add your handling code here:
-        updateTableDisplay();
-    }//GEN-LAST:event_refreshTableButton5ActionPerformed
-
-    private void refreshTableButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTableButton6ActionPerformed
-        // TODO add your handling code here:
-        updateTableDisplay();
-    }//GEN-LAST:event_refreshTableButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2129,10 +2018,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> priorityComboBox;
     private javax.swing.JComboBox<String> priorityComboBox1;
     private javax.swing.JButton refreshTableButton;
-    private javax.swing.JButton refreshTableButton1;
-    private javax.swing.JButton refreshTableButton4;
-    private javax.swing.JButton refreshTableButton5;
-    private javax.swing.JButton refreshTableButton6;
     private javax.swing.JTable requestsTicketTable;
     private javax.swing.JButton resetTicketBttn1;
     private javax.swing.JButton solvedTickets;
@@ -2201,11 +2086,9 @@ public class MainMenu extends javax.swing.JFrame {
         if ("Employee".equals(x)) {
             manageUserButton.setVisible(false);
             assigneeComboBox1.setVisible(false);
-            assigneeComboBox.setVisible(false);
-            depComboBox.setVisible(false);
+            assigneeComboBox.enable(false);
+            depComboBox.enable(false);
             jLabel17.setVisible(false);
-            jLabel28.setVisible(false);
-            jLabel29.setVisible(false);
         }
         if ("Administrator".equals(x)) {
             manageUserButton.setVisible(true);
@@ -2217,7 +2100,7 @@ public class MainMenu extends javax.swing.JFrame {
     model = (DefaultTableModel) userManagerTable.getModel();
     model.setRowCount(0);
     for(Credentials u: user) {    
-    model.addRow(new Object[] {u.getEmpNum(),u.getFirstName(),u.getMiddleName(),u.getLastName(),u.getPhoneNumber(),u.getEmail(),u.getBirthday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
+    model.addRow(new Object[] {u.getNum(),u.getEmpnum(),u.getF_name(),u.getM_name(),u.getL_name(),u.getPhonenum(),u.getEmail(),u.getBday(),u.getActType(),u.getDepartment(),u.getPosition(),u.getStartdate(),u.getGender()});
     }
     alltickets = mySql.ShowRecSpec("SELECT m1.* FROM masterrecord m1 LEFT JOIN masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL ORDER BY TicketID DESC");
     model = (DefaultTableModel) allTicketTable.getModel();
@@ -2231,7 +2114,7 @@ public class MainMenu extends javax.swing.JFrame {
     for (Tickets t : followuptickets) {
     model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated(), t.getDateUpdated()});
     }
-    solvedtickets = mySql.ShowRecSpec("SELECT m1.* FROM ticketsys.masterrecord m1 LEFT JOIN ticketsys.masterrecord m2 ON (m1.TicketID = m2.TicketID and m1.RevisionCount < m2.RevisionCount) WHERE m2.RevisionCount IS NULL HAVING Status = 'Closed';");
+    solvedtickets = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE Status = 'Closed'");
     model = (DefaultTableModel) solvedTicketsTable.getModel();
     model.setRowCount(0);
     for (Tickets t : solvedtickets) {
@@ -2247,7 +2130,7 @@ public class MainMenu extends javax.swing.JFrame {
     model = (DefaultTableModel) myTicketTable.getModel();
     model.setRowCount(0);
     for (Tickets t : mytickets) {
-    model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated(), t.getStatus()});
+    model.addRow(new Object[]{t.getId(), t.getTitle(), t.getType(), t.getPriority(), t.getDepartment(), t.getDateCreated() ,t.getDateUpdated()});
     } 
     }
 }

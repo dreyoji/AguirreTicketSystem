@@ -70,9 +70,9 @@ public class Login extends javax.swing.JFrame {
         titleText.setText("WinQueue");
         jPanel1.add(titleText, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 520, 130));
 
-        LoginText.setFont(new java.awt.Font("Myanmar Text", 1, 30)); // NOI18N
+        LoginText.setFont(new java.awt.Font("Myanmar Text", 1, 24)); // NOI18N
         LoginText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LoginText.setText("Log in");
+        LoginText.setText("Login");
         jPanel1.add(LoginText, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 280, 80));
 
         descriptionText.setFont(new java.awt.Font("Myanmar Text", 1, 20)); // NOI18N
@@ -133,8 +133,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
-
+        
         Data_Credentials login = new Data_Credentials();
         String username = usernameFld.getText();
         String password = passwordFld.getText();

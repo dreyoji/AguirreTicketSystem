@@ -1,135 +1,141 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Database;
 
 /**
- * Credentials class contains the user credentials and personal information for
- * the employee.
+ *
+ * @author boxro
  */
 public class Credentials {
+    private int num;
+    private String empnum;    
+    private String u_name;
+    private String pass;    
+    private String email;       
+    private String f_name;
+    private String m_name;
+    private String l_name;
+    private int age;
+    private String bday;
+    private String phonenum;
+    private String gender;
+    private String residence;
+    private String actType;
+    private String startdate;
+    private String department;
+    private String position;
 
-    // instance variables
-    private int _num;               // unique identification number
-    private String _empNum;         // employee number
-    private String _username;       // username
-    private String _password;       // password
-    private String _email;          // email address
-    private String _firstName;      // first name
-    private String _middleName;     // middle name
-    private String _lastName;       // last name
-    private int _age;               // age
-    private String _birthday;       // date of birth
-    private String _phoneNumber;    // phone number
-    private String _gender;         // gender
-    private String _residence;      // residence address
-    private String _activityType;   // activity type
-    private String _startDate;      // start date
-    private String _department;     // department
-    private String _position;       // position
-
-    public Credentials(String empNum, String username, String password, String email, String firstName, String middleName, String lastName, int age, String birthday, String phoneNumber, String gender, String residence, String activityType, String startDate, String department, String position) {
-        _empNum = empNum;
-        _username = username;
-        _password = password;
-        _email = email;
-        _firstName = firstName;
-        _middleName = middleName;
-        _lastName = lastName;
-        _age = age;
-        _birthday = birthday;
-        _phoneNumber = phoneNumber;
-        _gender = gender;
-        _residence = residence;
-        _activityType = activityType;
-        _startDate = startDate;
-        _department = department;
-        _position = position;
+    public Credentials(String empnum, String u_name, String pass, String email, String f_name, String m_name, String l_name, int age, String bday, String phonenum, String gender, String residence, String actType, String startdate, String department, String position) {
+        this.empnum = empnum;
+        this.u_name = u_name;
+        this.pass = pass;
+        this.email = email;
+        this.f_name = f_name;
+        this.m_name = m_name;
+        this.l_name = l_name;
+        this.age = age;
+        this.bday = bday;
+        this.phonenum = phonenum;
+        this.gender = gender;
+        this.residence = residence;
+        this.actType = actType;
+        this.startdate = startdate;
+        this.department = department;
+        this.position = position;
     }
 
-    public Credentials(int num, String empNum, String username, String password, String email, String firstName, String middleName, String lastName, int age, String birthday, String phoneNumber, String gender, String residence, String activityType, String startDate, String department, String position) {
-        _num = num;
-        _empNum = empNum;
-        _username = username;
-        _password = password;
-        _email = email;
-        _firstName = firstName;
-        _middleName = middleName;
-        _lastName = lastName;
-        _age = age;
-        _birthday = birthday;
-        _phoneNumber = phoneNumber;
-        _gender = gender;
-        _residence = residence;
-        _activityType = activityType;
-        _startDate = startDate;
-        _department = department;
-        _position = position;
+    public Credentials(int num, String empnum, String u_name, String pass, String email, String f_name, String m_name, String l_name, int age, String bday, String phonenum, String gender, String residence, String actType, String startdate, String department, String position) {
+        this.num = num;
+        this.empnum = empnum;
+        this.u_name = u_name;
+        this.pass = pass;
+        this.email = email;
+        this.f_name = f_name;
+        this.m_name = m_name;
+        this.l_name = l_name;
+        this.age = age;
+        this.bday = bday;
+        this.phonenum = phonenum;
+        this.gender = gender;
+        this.residence = residence;
+        this.actType = actType;
+        this.startdate = startdate;
+        this.department = department;
+        this.position = position;
     }
 
-    // Getter methods for all variables
+
     public int getNum() {
-        return _num;
+        return num;
     }
 
-    public String getEmpNum() {
-        return _empNum;
+    public String getEmpnum() {
+        return empnum;
     }
 
-    public String getUsername() {
-        return _username;
+    public String getU_name() {
+        return u_name;
     }
 
-    public String getPassword() {
-        return _password;
+    public String getPass() {
+        return pass;
     }
 
     public String getEmail() {
-        return _email;
+        return email;
     }
 
-    public String getFirstName() {
-        return _firstName;
+    public String getF_name() {
+        return f_name;
     }
 
-    public String getMiddleName() {
-        return _middleName;
+    public String getM_name() {
+        return m_name;
     }
 
-    public String getLastName() {
-        return _lastName;
+    public String getL_name() {
+        return l_name;
     }
 
     public int getAge() {
-        return _age;
+        return age;
     }
 
-    public String getBirthday() {
-        return _birthday;
+    public String getBday() {
+        return bday;
     }
 
-    public String getPhoneNumber() {
-        return _phoneNumber;
+    public String getPhonenum() {
+        return phonenum;
     }
 
     public String getGender() {
-        return _gender;
+        return gender;
     }
 
     public String getResidence() {
-        return _residence;
+        return residence;
     }
 
     public String getActType() {
-        return _activityType;
+        return actType;
     }
 
     public String getStartdate() {
-        return _startDate;
+        return startdate;
     }
 
     public String getDepartment() {
-        return _department;
+        return department;
     }
 
     public String getPosition() {
-        return _position;
+        return position;
     }
+
+
+    
 }
+
