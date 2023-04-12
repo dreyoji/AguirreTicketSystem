@@ -1,6 +1,5 @@
 package MyApp;
 
-import Database.Data_Credentials;
 import Database.EncryptionDecryption;
 import Database.MySQLConnector;
 import com.formdev.flatlaf.FlatIntelliJLaf;
