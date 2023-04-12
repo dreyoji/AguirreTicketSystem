@@ -1607,7 +1607,6 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_updateTicketButtonActionPerformed
 
     private void depComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depComboBoxActionPerformed
-        // TODO add your handling code here:
         String department = depComboBox.getSelectedItem().toString();
         Data_Tickets emp = new Data_Tickets();
         String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
@@ -1636,92 +1635,99 @@ public class MainMenu extends javax.swing.JFrame {
             int ans = JOptionPane.showOptionDialog(this,"Are you sure you want to close this ticket?", "Close Ticket", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Yes", "No"}, JOptionPane.YES_OPTION);
             if (ans == JOptionPane.YES_OPTION){
                 Data_Tickets ticket = new Data_Tickets();
-                SimpleDateFormat sdl = new SimpleDateFormat("yyyyMM");
+                String TicketID = ticketNumberLbl4.getText();
+                String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + TicketID + "'";
+                ArrayList<Tickets> ticketinfo = ticket.ShowRecSpec(parameters);
+
                 long now = System.currentTimeMillis();
                 Timestamp tstamp = new Timestamp(now);
-                Date currentdate = new Date();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                String TicketID = ticketNumberLbl4.getText();
-                ArrayList<Tickets> ticketinfo;
-                String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + TicketID + "'";
-                ticketinfo = ticket.ShowRecSpec(parameters);
-                String TicketName = ticketNameTxtField.getText();
-                String TicketDesc = ticketTxtArea.getText();
-                String TicketType = ticketTypeComboBox.getSelectedItem().toString();
-                String PriorityLevel = priorityComboBox.getSelectedItem().toString();
-                String AssignedDepartment = depComboBox.getSelectedItem().toString();
-                String OldRevCount = "";
-                int NewRevCount = 0;
-                String DateCreated = "";
-                String Creator = getFirstname() + " " + getLastname(); 
-                String Notes = ticketNotesTextArea.getText();
-                for (Tickets t: ticketinfo){
-                OldRevCount = Integer.toString(t.getRevcount());
-                int increment = t.getRevcount()+1;        
-                NewRevCount = increment;
-                DateCreated = t.getDateCreated();
-                }
-                String AssignedPersonnel = assigneeComboBox.getSelectedItem().toString();
+                
+                String  OldRevCount = "";
+                int     NewRevCount = 0;
+                String  DateCreated = "";
                 String DateUpdated = tstamp.toString();
-                String Status = "Closed";
-                int followup = 0;
-                List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
-                if (checkFields(array).equals("valid")){
-                Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
-                ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
-                ticket.addRow("masterrecord", information);
-                tickethistory = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + TicketID + "' ORDER BY RevisionCount ASC");
-                model = (DefaultTableModel) ticketHistoryTable.getModel();
-                model.setRowCount(0);
-                for (Tickets t : tickethistory) {
-                model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+                
+                for (Tickets t: ticketinfo){
+                    OldRevCount = Integer.toString(t.getRevcount());
+                    NewRevCount = t.getRevcount()+1;        
+                    DateCreated = t.getDateCreated();
                 }
-                updateTableDisplay();
-                JOptionPane.showMessageDialog(null, "Ticket has been closed","Ticket Closed",JOptionPane.INFORMATION_MESSAGE);
-                parentPanel.removeAll();
-                parentPanel.add(assignedTicketsPanel);
-                parentPanel.repaint();
-                parentPanel.revalidate();
-                updateTableDisplay();                
+                
+                int followup = 0;
+                
+                
+                String TicketName           = ticketNameTxtField.getText();
+                String TicketDesc           = ticketTxtArea.getText();
+                String TicketType           = ticketTypeComboBox.getSelectedItem().toString();
+                String PriorityLevel        = priorityComboBox.getSelectedItem().toString();
+                String AssignedDepartment   = depComboBox.getSelectedItem().toString();
+                String AssignedPersonnel    = assigneeComboBox.getSelectedItem().toString();
+                String Status               = "Closed";
+                String Creator              = getFirstname() + " " + getLastname(); 
+                
+                List<String> array          = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
+                
+                if (checkFields(array).equals("valid")){
+                    String  Notes       = ticketNotesTextArea.getText();
+                    Tickets information = new Tickets(TicketID, NewRevCount, TicketName, TicketDesc, TicketType, PriorityLevel, AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator, Notes, followup);
+                    
+                    ticket.deleteRowParam("alltickets", information, " AND RevisionCount = '" + OldRevCount + "'");
+                    ticket.addRow("masterrecord", information);
+                    
+                    tickethistory   = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + TicketID + "' ORDER BY RevisionCount ASC");
+                    model           = (DefaultTableModel) ticketHistoryTable.getModel();
+                    
+                    model.setRowCount(0);
+                    
+                    for (Tickets t : tickethistory) {
+                        model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+                    }
+                    updateTableDisplay();
+                    JOptionPane.showMessageDialog(null, "Ticket has been closed","Ticket Closed",JOptionPane.INFORMATION_MESSAGE);
+                    parentPanel.removeAll();
+                    parentPanel.add(assignedTicketsPanel);
+                    parentPanel.repaint();
+                    parentPanel.revalidate();
+                    updateTableDisplay();                
                 } else{
-                JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
     }//GEN-LAST:event_closeTicketButtonActionPerformed
 
     private void ticketHistoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ticketHistoryTableMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel DFT = (DefaultTableModel) ticketHistoryTable.getModel();
-        int selectedRow =  ticketHistoryTable.getSelectedRow();
-        int row = ticketHistoryTable.rowAtPoint(evt.getPoint());
-        int col = ticketHistoryTable.columnAtPoint(evt.getPoint());
+        
+        int row         = ticketHistoryTable.rowAtPoint(evt.getPoint());
+        int col         = ticketHistoryTable.columnAtPoint(evt.getPoint());
+        
         if (row >= 0 && col >= 0) {
-            String id = ticketNumberLbl4.getText();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            ArrayList<Tickets> ticketinfo;
-            Data_Tickets ticket = new Data_Tickets();
-            String parameters = "SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY Number ASC";
-            ticketinfo = ticket.ShowRecSpec(parameters);
+            String              id          = ticketNumberLbl4.getText();
+            Data_Tickets        ticket      = new Data_Tickets();
+            String              parameters  = "SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY Number ASC";
+            ArrayList<Tickets>  ticketinfo  = ticket.ShowRecSpec(parameters);
+            
+            int selectedRow = ticketHistoryTable.getSelectedRow();
             ticketTypeComboBox.setSelectedItem(ticketHistoryTable.getValueAt(selectedRow,1).toString());
             priorityComboBox.setSelectedItem(ticketHistoryTable.getValueAt(selectedRow,5).toString());
             depComboBox.setSelectedItem(ticketHistoryTable.getValueAt(selectedRow,3).toString());
             for(Tickets t: ticketinfo){
-            ticketNameTxtField.setText(t.getTitle());
-            ticketTxtArea.setText(t.getDesc());
-            String department = depComboBox.getSelectedItem().toString();
-            Data_Tickets emp = new Data_Tickets();
-            String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
-            Object[] emplist = emp.employeeList(param).toArray();
-            assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
-            assigneeComboBox.setSelectedItem(t.getPersonnel());
+                ticketNameTxtField.setText(t.getTitle());
+                ticketTxtArea.setText(t.getDesc());
+                String          department  = depComboBox.getSelectedItem().toString();
+                String          param       = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
+                Data_Tickets    emp         = new Data_Tickets();
+                Object[]        emplist     = emp.employeeList(param).toArray();
+                
+                assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
+                assigneeComboBox.setSelectedItem(t.getPersonnel());
             }   
         } 
     }//GEN-LAST:event_ticketHistoryTableMouseClicked
 
     private void assignedTicketTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignedTicketTableMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel DFT = (DefaultTableModel) assignedTicketTable.getModel();
-        int selectedRow =  assignedTicketTable.getSelectedRow();
+        
         int row = assignedTicketTable.rowAtPoint(evt.getPoint());
         int col = assignedTicketTable.columnAtPoint(evt.getPoint());
         if (row >= 0 && col >= 0) {
@@ -1729,35 +1735,40 @@ public class MainMenu extends javax.swing.JFrame {
             parentPanel.add(indivTicketPanel);
             parentPanel.repaint();
             parentPanel.revalidate();
-            String id = assignedTicketTable.getValueAt(selectedRow,0).toString();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            ArrayList<Tickets> ticketinfo;
-            Data_Tickets ticket = new Data_Tickets();
-            String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
-            ticketinfo = ticket.ShowRecSpec(parameters);
+
+            int                 selectedRow =  assignedTicketTable.getSelectedRow();
+            String              id          = assignedTicketTable.getValueAt(selectedRow,0).toString();
+            Data_Tickets        ticket      = new Data_Tickets();
+            String              parameters  = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
+            ArrayList<Tickets>  ticketinfo  = ticket.ShowRecSpec(parameters);
+            
             ticketNumberLbl4.setText(id);
             ticketTypeComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,1).toString());
             priorityComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,2).toString());
             depComboBox.setSelectedItem(assignedTicketTable.getValueAt(selectedRow,3).toString());
+            
             for(Tickets t: ticketinfo){
-            ticketNameTxtField.setText(t.getTitle());
-            ticketTxtArea.setText(t.getDesc());
-            String department = depComboBox.getSelectedItem().toString();
-            Data_Tickets emp = new Data_Tickets();
-            String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
-            Object[] emplist = emp.employeeList(param).toArray();
-            assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
-            if (t.getPersonnel().equals("N/A")){   
-            assigneeComboBox.addItem("N/A");
-            assigneeComboBox.setSelectedItem("N/A");
-            }             
-            assigneeComboBox.setSelectedItem(t.getPersonnel());
+                ticketNameTxtField.setText(t.getTitle());
+                ticketTxtArea.setText(t.getDesc());
+                
+                String          department  = depComboBox.getSelectedItem().toString();
+                Data_Tickets    emp         = new Data_Tickets();
+                String          param       = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '" + department + "'";
+                Object[]        emplist     = emp.employeeList(param).toArray();
+                
+                assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
+                if (t.getPersonnel().equals("N/A")){   
+                    assigneeComboBox.addItem("N/A");
+                    assigneeComboBox.setSelectedItem("N/A");
+                }             
+                assigneeComboBox.setSelectedItem(t.getPersonnel());
             } 
-            tickethistory = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY RevisionCount ASC");
-            model = (DefaultTableModel) ticketHistoryTable.getModel();
+            tickethistory   = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY RevisionCount ASC");
+            model           = (DefaultTableModel) ticketHistoryTable.getModel();
+            
             model.setRowCount(0);
             for (Tickets t : tickethistory) {
-            model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
+                model.addRow(new Object[]{t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(), t.getPersonnel(), t.getPriority()});
             }
             updateTableDisplay();
         }        
