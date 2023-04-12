@@ -116,9 +116,9 @@ public class LoginPopup extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         if(isConnectionEstablished()){
-            this.setVisible(false);
             Login newLogin = new Login();
             newLogin.setVisible(true);
+            dispose();
         }else{
             resetText();
             popupMessage("Wrong Credentials");
@@ -151,16 +151,6 @@ public class LoginPopup extends javax.swing.JFrame {
             Logger.getLogger(LoginPopup.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
-    }
-
-    // Utility functions
-    public void resetText(){
-        usernameFld.setText("");
-        passwordFld.setText("");
-    }
-
-    public void popupMessage(String message){
-        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
@@ -209,6 +199,16 @@ public class LoginPopup extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
+    }
+    
+    // Utility functions
+    public void resetText(){
+        usernameFld.setText("");
+        passwordFld.setText("");
+    }
+
+    public void popupMessage(String message){
+        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package MyApp;
 
 import Database.Data_Credentials;
@@ -19,24 +15,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-/**
- *
- * @author True Gaming
- */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
     public Login() {
         initComponents();
         FrameCenter.centerJFrame(this);
     }
-    NewUser newUser;
-    MainMenu mainMenu;
-    Connection myConn = null;
-    Statement myStmt = null;
-    ResultSet myRes = null;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,74 +118,68 @@ public class Login extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         
-        Data_Credentials login = new Data_Credentials();
         String username = usernameFld.getText();
         String password = passwordFld.getText();
 
         // Check if the username and password fields are not blank
         if (username.trim().isEmpty()|| password.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "All fields must not be blank!", "Error", JOptionPane.ERROR_MESSAGE);
+            popupErrorMessage("All fields must not be blank!");
         } else {
-                try {
-                    EncryptionDecryption hash = new EncryptionDecryption();
-                    // Encrypt the password
-                    // Check if encryption was successful
-                    // Query the credentials table to check if the entered username and encrypted password match
-                    String qry = "SELECT * FROM credentials WHERE username='" + username + "' && password = '" + hash.encrypt(password) + "'";
-                    try {
-                        myConn = MySQLConnector.getInstance().getConnection();
-                        myStmt=myConn.createStatement();
-                        myRes = myStmt.executeQuery(qry);
-                        System.out.println(qry);
-                        if (myRes.next()) {
-                            String acctype = myRes.getString(14);
-                            String fname = myRes.getString(6);
-                            String lname = myRes.getString(8);
-                            String dept = myRes.getString(16);
-                            String emp = myRes.getString(2);
-                            System.out.println(acctype);
-                            System.out.println(fname);
-                            System.out.println(lname);
-                            System.out.println(dept);                            
-                            if (acctype.equals("Administrator") || acctype.equals("Employee")) {
-                                MainMenu user = new MainMenu(acctype,fname,lname,dept,emp);
-                                user.show();
-                            }
-                            dispose();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "The credentials provided doesn't match!", "Error", JOptionPane.ERROR_MESSAGE);
-                            usernameFld.setText("");
-                            passwordFld.setText("");
-                        }
-                        
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (PropertyVetoException ex) {
-                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    finally{
-                        if (myRes != null) try { myRes.close(); } catch (SQLException e) {e.printStackTrace();}
-                        if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {e.printStackTrace();}
-                        if (myConn != null) try { myConn.close(); } catch (SQLException e) {e.printStackTrace();}
-                    }
+            Connection myConn   = null;
+            Statement myStmt    = null;
+            ResultSet myRes     = null;
+            
+            // Try encryption
+            EncryptionDecryption hash = null;
+            try {
+                hash = new EncryptionDecryption();
+            } catch (Exception ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                popupErrorMessage("Encryption not working: Shutting Down");
+                dispose();
+            }
+            
+            // Try MySQL Connection
+            try {
+                myConn   = MySQLConnector.getInstance().getConnection();
+                myStmt   = myConn.createStatement();
+                
+                // Create Query
+                String qry  = "SELECT * FROM credentials WHERE username='" + username + "' && password = '" + hash.encrypt(password) + "'";
+                myRes       = myStmt.executeQuery(qry);
+                
+                if (myRes.next()) {
                     
-                } catch (Exception ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }                  
-
+                    // Get Employee Information
+                    String acctype  = myRes.getString(14);
+                    String fname    = myRes.getString(6);
+                    String lname    = myRes.getString(8);
+                    String dept     = myRes.getString(16);
+                    String emp      = myRes.getString(2);
+                    
+                    // Set-up Mainmenu
+                    MainMenu user = new MainMenu(acctype,fname,lname,dept,emp);
+                    user.setVisible(true);
+                    dispose();
+                } else {
+                    popupErrorMessage("The credentials provided doesn't match!");
+                    resetText();
+                }
+            } catch (SQLException | IOException | PropertyVetoException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            finally{
+                if (myRes != null) try { myRes.close(); } catch (SQLException e) {}
+                if (myStmt != null) try { myStmt.close(); } catch (SQLException e) {}
+                if (myConn != null) try { myConn.close(); } catch (SQLException e) {}
+            }                
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -239,6 +217,17 @@ public class Login extends javax.swing.JFrame {
         }
     }
 
+    // Utility Functions
+    public void popupErrorMessage(String message){
+        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    // Utility functions
+    public void resetText(){
+        usernameFld.setText("");
+        passwordFld.setText("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LoginBackground;
     private javax.swing.JLabel LoginText;
