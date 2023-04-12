@@ -1950,30 +1950,30 @@ public class MainMenu extends javax.swing.JFrame {
                 parentPanel.add(indivTicketPanel);
                 parentPanel.repaint();
                 parentPanel.revalidate();
-                
-                int     selectedRow = allTicketTable.getSelectedRow();
-                String  id          = allTicketTable.getValueAt(selectedRow, 0).toString();
 
-                Data_Tickets        ticket      = new Data_Tickets();
-                String              parameters  = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
-                ArrayList<Tickets>  ticketinfo  = ticket.ShowRecSpec(parameters);
-                    
+                int selectedRow = allTicketTable.getSelectedRow();
+                String id = allTicketTable.getValueAt(selectedRow, 0).toString();
+
+                Data_Tickets ticket = new Data_Tickets();
+                String parameters = "SELECT * FROM alltickets WHERE TicketID = '" + id + "'";
+                ArrayList<Tickets> ticketinfo = ticket.ShowRecSpec(parameters);
+
                 ticketNumberLbl4.setText(id);
                 ticketTypeComboBox.setSelectedItem(allTicketTable.getValueAt(selectedRow, 1).toString());
                 priorityComboBox.setSelectedItem(allTicketTable.getValueAt(selectedRow, 2).toString());
                 depComboBox.setSelectedItem(allTicketTable.getValueAt(selectedRow, 3).toString());
-                
+
                 for (Tickets t : ticketinfo) {
                     ticketNameTxtField.setText(t.getTitle());
                     ticketTxtArea.setText(t.getDesc());
-                    
-                    String department   = depComboBox.getSelectedItem().toString();
-                    String param        = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '"
-                                        + department + "'";
-                    
-                    Data_Tickets    emp     = new Data_Tickets();
-                    Object[]        emplist = emp.employeeList(param).toArray();
-                    
+
+                    String department = depComboBox.getSelectedItem().toString();
+                    String param = "SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS combined FROM credentials WHERE department = '"
+                            + department + "'";
+
+                    Data_Tickets emp = new Data_Tickets();
+                    Object[] emplist = emp.employeeList(param).toArray();
+
                     assigneeComboBox.setModel(new DefaultComboBoxModel(emplist));
                     if (t.getPersonnel().equals("N/A")) {
                         assigneeComboBox.addItem("N/A");
@@ -1981,10 +1981,11 @@ public class MainMenu extends javax.swing.JFrame {
                     } else
                         assigneeComboBox.setSelectedItem(t.getPersonnel());
                 }
-                
-                tickethistory   = mySql.ShowRecSpec("SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY RevisionCount ASC");
-                model           = (DefaultTableModel) ticketHistoryTable.getModel();
-                
+
+                tickethistory = mySql.ShowRecSpec(
+                        "SELECT * FROM masterrecord WHERE TicketID = '" + id + "' ORDER BY RevisionCount ASC");
+                model = (DefaultTableModel) ticketHistoryTable.getModel();
+
                 model.setRowCount(0);
                 for (Tickets t : tickethistory) {
                     model.addRow(new Object[] { t.getRevcount(), t.getDateUpdated(), t.getStatus(), t.getDepartment(),
@@ -1996,8 +1997,8 @@ public class MainMenu extends javax.swing.JFrame {
         });
         showHistory.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int             selectedRow = allTicketTable.getSelectedRow();
-                TicketHistory   history     = new TicketHistory(allTicketTable.getValueAt(selectedRow, 0).toString());
+                int selectedRow = allTicketTable.getSelectedRow();
+                TicketHistory history = new TicketHistory(allTicketTable.getValueAt(selectedRow, 0).toString());
                 history.show();
             }
 

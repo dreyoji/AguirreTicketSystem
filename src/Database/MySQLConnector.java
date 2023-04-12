@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Database;
+
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.*;
@@ -14,20 +15,21 @@ import org.apache.commons.dbcp2.BasicDataSource;
  */
 public class MySQLConnector {
     String addr = "localhost:3306/ticketsys";
-    String address = "jdbc:mysql://" + addr ;
+    String address = "jdbc:mysql://" + addr;
     String user = "";
     String pass = "";
-    
+
     private static MySQLConnector datasource;
     private BasicDataSource ds;
-    
-    private MySQLConnector(){}
-    
-    public void setDatabaseInformation(String username, String password){
+
+    private MySQLConnector() {
+    }
+
+    public void setDatabaseInformation(String username, String password) {
         this.user = username;
         this.pass = password;
     }
-    
+
     public void initConnector() throws IOException, SQLException, PropertyVetoException {
         ds = new BasicDataSource();
         ds.setUrl(address);
@@ -37,7 +39,7 @@ public class MySQLConnector {
         ds.setMaxIdle(10);
         ds.setMaxOpenPreparedStatements(50);
     }
-    
+
     public static MySQLConnector getInstance() throws IOException, SQLException, PropertyVetoException {
         if (datasource == null) {
             datasource = new MySQLConnector();
@@ -49,7 +51,6 @@ public class MySQLConnector {
 
     public Connection getConnection() throws SQLException {
         return this.ds.getConnection();
-    }    
-    
-    
+    }
+
 }

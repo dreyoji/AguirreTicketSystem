@@ -10,14 +10,18 @@ import java.util.ArrayList;
  *
  * @author boxro
  */
-interface Data <T> {
-    
-public void createTable(String table);    
-public void deleteTable(String table);
-public ArrayList <T> ShowRec(String table);
-public void addRow(String table, T obj);
-public void editRow(String table, T obj);
-public void deleteRow(String table, T obj);
+interface Data<T> {
 
-    
+    public void createTable(String table);
+
+    public void deleteTable(String table);
+
+    public ArrayList<T> ShowRec(String table);
+
+    public void addRow(String table, T obj);
+
+    public void editRow(String table, T obj);
+
+    public void deleteRow(String table, T obj);
+
 }

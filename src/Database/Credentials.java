@@ -10,10 +10,10 @@ package Database;
  */
 public class Credentials {
     private int num;
-    private String empnum;    
+    private String empnum;
     private String u_name;
-    private String pass;    
-    private String email;       
+    private String pass;
+    private String email;
     private String f_name;
     private String m_name;
     private String l_name;
@@ -27,7 +27,9 @@ public class Credentials {
     private String department;
     private String position;
 
-    public Credentials(String empnum, String u_name, String pass, String email, String f_name, String m_name, String l_name, int age, String bday, String phonenum, String gender, String residence, String actType, String startdate, String department, String position) {
+    public Credentials(String empnum, String u_name, String pass, String email, String f_name, String m_name,
+            String l_name, int age, String bday, String phonenum, String gender, String residence, String actType,
+            String startdate, String department, String position) {
         this.empnum = empnum;
         this.u_name = u_name;
         this.pass = pass;
@@ -46,7 +48,9 @@ public class Credentials {
         this.position = position;
     }
 
-    public Credentials(int num, String empnum, String u_name, String pass, String email, String f_name, String m_name, String l_name, int age, String bday, String phonenum, String gender, String residence, String actType, String startdate, String department, String position) {
+    public Credentials(int num, String empnum, String u_name, String pass, String email, String f_name, String m_name,
+            String l_name, int age, String bday, String phonenum, String gender, String residence, String actType,
+            String startdate, String department, String position) {
         this.num = num;
         this.empnum = empnum;
         this.u_name = u_name;
@@ -65,7 +69,6 @@ public class Credentials {
         this.department = department;
         this.position = position;
     }
-
 
     public int getNum() {
         return num;
@@ -135,7 +138,4 @@ public class Credentials {
         return position;
     }
 
-
-    
 }
-
