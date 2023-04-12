@@ -138,7 +138,21 @@ public class LoginPopup extends javax.swing.JFrame {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
 
-        Data_Credentials login = new Data_Credentials();
+        if(isConnectionEstablished()){
+            this.setVisible(false);
+            Login newLogin = new Login();
+            newLogin.setVisible(true);
+        }else{
+            usernameFld.setText("");
+            passwordFld.setText("");
+            JOptionPane.showMessageDialog(null, "Wrong Credentials", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_loginBtnActionPerformed
+
+    
+    public boolean isConnectionEstablished(){
         try {
             MySQLConnector _connector = MySQLConnector.getInstance();
             String username = usernameFld.getText();
@@ -148,9 +162,11 @@ public class LoginPopup extends javax.swing.JFrame {
             }else{
                 _connector.setDatabaseInformation(username, password);
                 _connector.initConnector();
-                this.setVisible(false);
-                Login newLogin = new Login();
-                newLogin.setVisible(true);
+                try{
+                    _connector.getConnection();
+                }catch(Exception ex){
+                    return false;
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(LoginPopup.class.getName()).log(Level.SEVERE, null, ex);
@@ -159,10 +175,9 @@ public class LoginPopup extends javax.swing.JFrame {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(LoginPopup.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-    }//GEN-LAST:event_loginBtnActionPerformed
-
+        return true;
+    }
+    
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         // TODO add your handling code here:
         System.exit(0);
