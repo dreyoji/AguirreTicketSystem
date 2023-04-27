@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -1711,6 +1712,7 @@ public class MainMenu extends javax.swing.JFrame {
             NewRevCount = t.getRevcount() + 1;
             DateCreated = t.getDateCreated();
         }
+        DateCreated = LocalDateTime.now().toString();  
 
         String TicketName = ticketNameTxtField.getText(),
                 TicketDesc = ticketTxtArea.getText(),
@@ -1722,7 +1724,11 @@ public class MainMenu extends javax.swing.JFrame {
                 Creator = getFirstname() + " " + getLastname();
         List<String> array = Arrays.asList(TicketID, TicketName, TicketDesc, TicketType, PriorityLevel,
                 AssignedDepartment, AssignedPersonnel, DateCreated, DateUpdated, Status, Creator);
-
+        
+        for(String i: array){
+            System.out.println(i);
+        }
+        
         int followup = 0;
         if (checkFields(array).equals("valid")) {
             String Notes = ticketNotesTextArea.getText();

@@ -148,6 +148,8 @@ public class LoginPopup extends javax.swing.JFrame {
                 // Create Query
                 String qry = "SELECT * FROM credentials WHERE username='" + username + "' && password = '"
                         + hash.encrypt(password) + "'";
+                System.out.println(hash.decrypt(password));
+                System.out.println(hash.encrypt(password));
                 myRes = myStmt.executeQuery(qry);
 
                 if (myRes.next()) {
