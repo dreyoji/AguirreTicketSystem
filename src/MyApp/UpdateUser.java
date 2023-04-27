@@ -517,7 +517,13 @@ public class UpdateUser extends javax.swing.JFrame {
             String conpass = passConFld.getText();
             String acttyp = acctypeSel.getSelectedItem().toString();
             String empnum = empIDFld.getText();
-
+            for(int i =0; i < empnum.length(); ++i){
+                if(!Character.isDigit(empnum.charAt(i))){
+                JOptionPane.showMessageDialog(null, "ID should onyl be number", "Missing Employee Number",
+                        JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            
             String bday = "";
             String sdate = "";
             int age = 0;
